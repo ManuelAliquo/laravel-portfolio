@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md shadow-sm py-1">
     <div class="container">
         <div class="navbar-brand">
-            <img class="img-fluid" src="portfolio-logo.png" alt="logo">
+            <img class="img-fluid" src="{{ asset('logo.png') }}" alt="Logo">
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>

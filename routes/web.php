@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,7 +13,13 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::resource('projects', ProjectController::class);
+// pulic routes
+Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
+
+// protected routes
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::resource('projects', AdminProjectController::class)->except(['index', 'show']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

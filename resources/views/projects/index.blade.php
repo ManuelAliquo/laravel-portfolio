@@ -8,7 +8,9 @@
         @foreach ($projects as $project)
             <div class="col">
                 <div class="card">
-                    <img src="{{$project['cover_image']}}" class="card-img-top" alt="{{$project['title']}}">
+                    <a href="{{route('projects.show', $project)}}">
+                        <img src="{{$project['cover_image']}}" class="card-img-top" alt="{{$project['title']}}">
+                    </a>
                     <ul class="card-body p-3 list-unstyled">
                         <li><b>Titolo:</b> {{$project['title']}}</li>
                         <li>
