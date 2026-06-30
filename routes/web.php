@@ -2,19 +2,18 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing');
-})->name("landing");
+})->name('landing');
 
-Route::get("/about", function () {
-    return view("about");
-})->name("about");
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
-Route::get("/projects", function () {
-    return view("projects");
-})->name("projects");
+Route::resource('projects', ProjectController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,11 +21,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(["auth", "verified", "admin"])
-    ->name("admin.")
-    ->prefix("admin")
+Route::middleware(['auth', 'verified', 'admin'])
+    ->name('admin.')
+    ->prefix('admin')
     ->group(function () {
-        Route::get("/", [DashboardController::class, "index"])->name("dashboard");
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     });
 
 require __DIR__ . '/auth.php';

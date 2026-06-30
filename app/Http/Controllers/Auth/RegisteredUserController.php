@@ -49,6 +49,6 @@ class RegisteredUserController extends Controller
         // admin
         if ($request->user()->isAdmin()) {
             return redirect()->route('admin.dashboard');
-        } else return redirect(route('projects', absolute: false));
+        } else return redirect(route('projects.index', absolute: false));
     }
 }

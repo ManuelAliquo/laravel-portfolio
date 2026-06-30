@@ -16,7 +16,7 @@
     @else
     <div class="text-center mt-5">
         <button class="btn btn-outline-success fs-4 me-3 px-3">
-            <a class="text-decoration-none" href="{{ route('projects') }}">{{ __('My Projects') }}</a>
+            <a class="text-decoration-none" href="{{ route('projects.index') }}">{{ __('My Projects') }}</a>
         </button>
         <button class="btn btn-outline-primary fs-4 px-3">
             <a class="text-decoration-none" href="{{ route('about') }}">{{ __('About Me') }}</a>

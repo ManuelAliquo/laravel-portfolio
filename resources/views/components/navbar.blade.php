@@ -25,7 +25,7 @@
                 @endguest
                 @if (Auth::user())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('projects') }}">{{ __('Projects') }}</a>
+                        <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projects') }}</a>
                     </li>
                 @endif
             </ul>
