@@ -4,9 +4,13 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->get('/', function () {
+Route::get('/', function () {
     return view('landing');
 })->name("landing");
+
+Route::get("/about", function () {
+    return view("about");
+})->name("about");
 
 Route::get("/projects", function () {
     return view("projects");

@@ -8,6 +8,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav fs-5">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('landing') }}">{{ __('Home') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('about') }}">{{ __('About Me') }}</a>
+                </li>
+                @guest
+                @else
+                @if (Auth::user()->isAdmin())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                    </li>               
+                @endif
+                @endguest
+                @if (Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('projects') }}">{{ __('Projects') }}</a>
+                    </li>
+                @endif
+            </ul>
             <ul class="navbar-nav ms-auto fs-5">
                 <!-- Authentication Links -->
                 @guest
