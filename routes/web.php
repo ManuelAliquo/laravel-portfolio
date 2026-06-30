@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware('guest')->get('/', function () {
+    return view('landing');
+})->name("landing");
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get("/projects", function () {
+    return view("projects");
+})->name("projects");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,4 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(["auth", "verified", "admin"])
+    ->name("admin.")
+    ->prefix("admin")
+    ->group(function () {
+        Route::get("/", [DashboardController::class, "index"])->name("dashboard");
+    });
+
+require __DIR__ . '/auth.php';
