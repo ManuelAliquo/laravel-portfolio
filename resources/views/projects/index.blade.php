@@ -4,12 +4,11 @@
 <div class="container mt-4 mb-5">
     <div class="d-flex gap-3 align-items-center mb-4">
         <h2 class="text-secondary m-0">All Projects</h2>
+        
         {{-- admin dashboard --}}
         @auth
             @if(auth()->user()->isAdmin())
-                <button class="btn btn-outline-primary fs-4">
-                    <a class="text-decoration-none text-black" href="{{route('admin.projects.create')}}">Add Project</a>
-                </button>
+                <a class="btn btn-outline-primary fs-4" href="{{route('admin.projects.create')}}">Add Project</a>
             @endif
         @endauth
     </div>
@@ -31,9 +30,10 @@
                             @auth
                             @if(auth()->user()->isAdmin())
                             <li class="mt-3">
-                                <button class="btn btn-outline-primary">
-                                    <a class="text-decoration-none text-black" href="{{route('admin.projects.edit', $project)}}">Edit Project</a>
-                                </button>
+                                <div class="d-flex gap-1 justify-content-center">
+                                    <a class="btn btn-outline-primary" href="{{route('admin.projects.edit', $project)}}">Edit Project</a>
+                                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Project</button>
+                                </div>
                             </li>
                             @endif
                             @endauth
@@ -43,6 +43,28 @@
             </div>
         @endforeach
     </div>
+</div>
+
+
+{{-- delete modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fw-bold" id="exampleModalLabel">Delete Project</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">Sure you want to Delete this Project?</div>
+      <div class="modal-footer">
+        <button class="btn btn-primary fs-5" data-bs-dismiss="modal">No</button>
+        <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-outline-danger fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Yes, delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection
