@@ -2,32 +2,24 @@
 @section('content')
 
 <div class="container">
-    <h2 class="fs-4 text-secondary my-4">All Projects</h2>
+    <h2 class="text-secondary ms-2 my-4">All Projects</h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
         @foreach ($projects as $project)
             <div class="col">
-                <div class="card">
-                    <a href="{{route('projects.show', $project)}}">
+                <div class="card text-center">
+                    <a class="text-decoration-none text-black" href="{{route('projects.show', $project)}}">
                         <img src="{{$project['cover_image']}}" class="card-img-top" alt="{{$project['title']}}">
-                    </a>
-                    <ul class="card-body p-3 list-unstyled">
-                        <li><b>Titolo:</b> {{$project['title']}}</li>
-                        <li>
-                            <b>Technologies:</b>
-                            <ul>
-                                @foreach ($project['technologies'] as $technology)
-                                    <li>{{$technology}}</li>
-                                @endforeach
-                            </ul>
+                    <ul class="card-body px-3 pt-3 pb-2 list-unstyled">
+                        <li><b class="fs-4 bg-info px-2 py-1 rounded-3">{{$project['title']}}</b></li>
+                        <li class="my-2">{{$project['description']}}</li>
+                        <li class="d-flex gap-2 justify-content-center">
+                            @foreach ($project['technologies'] as $technology)
+                                <span class="px-2 py-1 bg-warning rounded-3">{{$technology}}</span>
+                            @endforeach
                         </li>
-                        <li><b>Descrizione:</b> {{$project['description']}}</li>
-                        @if($project['url_repo'])
-                            <li>
-                                <a href="{{$project['url_repo']}}" target="_blank">View GitHub Repository</a>
-                            </li>
-                        @endif
                     </ul>
+                </a>
                 </div>
             </div>
         @endforeach

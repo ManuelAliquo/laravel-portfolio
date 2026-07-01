@@ -7,14 +7,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav fs-5">
+            <!-- Page Links -->
+            <ul class="navbar-nav fs-5 gap-2">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('landing') }}">{{ __('Home') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about') }}">{{ __('About Me') }}</a>
                 </li>
+                @if (Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projects') }}</a>
+                    </li>
+                @endif
                 @guest
                 @else
                 @if (Auth::user()->isAdmin())
@@ -23,14 +28,9 @@
                     </li>               
                 @endif
                 @endguest
-                @if (Auth::user())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projects') }}</a>
-                    </li>
-                @endif
             </ul>
+            <!-- Auth Links -->
             <ul class="navbar-nav ms-auto fs-5">
-                <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

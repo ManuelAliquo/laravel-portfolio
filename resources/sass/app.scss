@@ -7,6 +7,10 @@
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
 
+.wip {
+    border: 1px dotted red;
+}
+
 .navbar-brand > img {
     height: 80px;
 }
@@ -15,4 +19,26 @@
     font-size: 4rem;
     font-family: "Bebas Neue", sans-serif;
     letter-spacing: 0.1rem;
+}
+
+.show-page .image-container {
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    border: 3px solid rgba(0, 0, 0, 0.7);
+}
+
+.show-page .image-container > img {
+    object-fit: cover;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+    .show-page .project-sect {
+        width: 75%;
+    }
 }
