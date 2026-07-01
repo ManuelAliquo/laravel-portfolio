@@ -13,13 +13,13 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// pulic routes
-Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
-
 // protected routes
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('projects', AdminProjectController::class)->except(['index', 'show']);
 });
+
+// pulic routes
+Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

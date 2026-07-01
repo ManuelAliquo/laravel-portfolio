@@ -18,13 +18,24 @@ class ProjectController extends Controller
     // CREATE
     public function create()
     {
-        //
+        return view("projects.create");
     }
 
     // STORE
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newProject = new Project();
+
+        $newProject->title = $data['title'];
+        $newProject->description = $data['description'];
+        $newProject->cover_image = $data['image'];
+        $newProject->technologies = $data['technologies'];
+        $newProject->url_repo = $data['github'];
+
+        $newProject->save();
+
+        return redirect()->route('projects.show', $newProject);
     }
 
     // SHOW
