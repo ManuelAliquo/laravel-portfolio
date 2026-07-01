@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// public routes
 Route::get('/', function () {
     return view('landing');
 })->name('landing');
@@ -13,12 +14,6 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// protected routes
-Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::resource('projects', AdminProjectController::class)->except(['index', 'show']);
-});
-
-// pulic routes
 Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
 
 Route::middleware('auth')->group(function () {
@@ -27,11 +22,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// protected routes
 Route::middleware(['auth', 'verified', 'admin'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('projects', AdminProjectController::class)->except('show');
     });
 
 require __DIR__ . '/auth.php';

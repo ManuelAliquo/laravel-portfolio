@@ -20,14 +20,6 @@
                         <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projects') }}</a>
                     </li>
                 @endif
-                @guest
-                @else
-                @if (Auth::user()->isAdmin())
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
-                    </li>               
-                @endif
-                @endguest
             </ul>
             <!-- Auth Links -->
             <ul class="navbar-nav ms-auto fs-5">

@@ -2,9 +2,9 @@
 @section('content')
 
 <div class="container">
-    <h2 class="text-secondary ms-2 my-4">Add a Project</h2>
+    <h2 class="text-secondary ms-2 my-4">Edit Project</h2>
 
-    <form action="{{route('projects.update', $project)}}" method="POST">
+    <form action="{{route('admin.projects.update', $project)}}" method="POST">
         @csrf
         @method("PUT")
 

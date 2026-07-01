@@ -2,9 +2,9 @@
 @section('content')
 
 <div class="container">
-    <h2 class="text-secondary ms-2 my-4">Add a Project</h2>
+    <h2 class="text-secondary ms-2 my-4">Add Project</h2>
 
-    <form action="{{route('projects.store')}}" method="POST">
+    <form action="{{route('admin.projects.store')}}" method="POST">
         @csrf
         <div class="mb-3">
             <label class="form-label mb-0 ms-1" for="project-title">Title</label>
