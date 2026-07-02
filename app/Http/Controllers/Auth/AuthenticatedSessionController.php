@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         // admin
         if ($request->user()->isAdmin()) {
-            return redirect()->route('admin.projects.index');
+            return redirect()->route('projects.index');
         } else return redirect()->intended(route('projects.index', absolute: false));
     }
 

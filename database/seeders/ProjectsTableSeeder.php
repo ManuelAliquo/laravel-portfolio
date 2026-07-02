@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Project;
-use Illuminate\Support\Str;
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -22,6 +21,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->cover_image = "placeholder-img.png";
             $newProject->description = $faker->paragraph();
             $newProject->url_repo = 'https://github.com';
+            $newProject->type_id = rand(1, 4);
 
             $newProject->save();
         }

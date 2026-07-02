@@ -21,7 +21,8 @@
                         <img src="{{asset($project['cover_image'])}}" class="card-img-top" alt="{{$project['title']}}">
                         <ul class="card-body px-3 pt-3 pb-2 list-unstyled">
                             <li><b class="fs-4 bg-info px-2 py-1 rounded-3">{{$project['title']}}</b></li>
-                            <li class="my-2">{{$project['description']}}</li>
+                            <li class="mt-2">{{$project['description']}}</li>
+                            <li class="mt-3 btn btn-warning">{{$project['type']['name']}}</li>
                             @auth
                             @if(auth()->user()->isAdmin())
                             <li class="mt-3">
@@ -39,7 +40,6 @@
         @endforeach
     </div>
 </div>
-
 
 {{-- delete modal --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

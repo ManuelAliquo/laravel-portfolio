@@ -14,20 +14,21 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
-
+// protected routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('projects', AdminProjectController::class)->only(['index', 'show']);
 });
 
-// protected routes
+// private routes
 Route::middleware(['auth', 'verified', 'admin'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::resource('projects', AdminProjectController::class)->except('show');
+        Route::resource('projects', AdminProjectController::class)->except(['index', 'show']);
     });
 
 require __DIR__ . '/auth.php';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -18,7 +19,8 @@ class ProjectController extends Controller
     // CREATE
     public function create()
     {
-        return view("projects.create");
+        $types = Type::all();
+        return view("projects.create", compact('types'));
     }
 
     // STORE
@@ -31,6 +33,7 @@ class ProjectController extends Controller
         $newProject->description = $data['description'];
         $newProject->cover_image = $data['image'];
         $newProject->url_repo = $data['github'];
+        $newProject->type_id = $data['type_id'];
 
         $newProject->save();
 
@@ -46,7 +49,8 @@ class ProjectController extends Controller
     // EDIT
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $types = Type::all();
+        return view('projects.edit', compact('project', 'types'));
     }
 
     // UPDATE
@@ -58,6 +62,7 @@ class ProjectController extends Controller
         $project->description = $data['description'];
         $project->cover_image = $data['image'];
         $project->url_repo = $data['github'];
+        $project->type_id = $data['type_id'];
 
         $project->update();
 

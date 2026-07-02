@@ -8,11 +8,12 @@
             <div class="image-container rounded-3">
                 <img class="img-fluid" src="{{asset($project['cover_image'])}}" alt="cover-image">
             </div>
-            <button class="btn btn-primary mt-3 fs-5">
-                <a class="text-white text-decoration-none" href="{{$project['url_repo']}}" target="_blank">
+            <div class="d-flex gap-2">
+                <span class="btn btn-warning mt-3 fs-5">{{$project['type']['name']}}</span>
+                <a class="btn btn-primary mt-3 fs-5" href="{{$project['url_repo']}}" target="_blank">
                     View GitHub Repository
                 </a>
-            </button>
+            </div>
     </section>
 </div>
 
