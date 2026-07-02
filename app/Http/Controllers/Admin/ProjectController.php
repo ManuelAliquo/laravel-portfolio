@@ -30,7 +30,6 @@ class ProjectController extends Controller
         $newProject->title = $data['title'];
         $newProject->description = $data['description'];
         $newProject->cover_image = $data['image'];
-        $newProject->technologies = $data['technologies'];
         $newProject->url_repo = $data['github'];
 
         $newProject->save();
@@ -58,7 +57,6 @@ class ProjectController extends Controller
         $project->title = $data['title'];
         $project->description = $data['description'];
         $project->cover_image = $data['image'];
-        $project->technologies = $data['technologies'];
         $project->url_repo = $data['github'];
 
         $project->update();

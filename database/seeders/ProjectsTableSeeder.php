@@ -15,17 +15,13 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $newProject = new Project();
 
-            $title = $faker->sentence(3);
-            $techPool = ['Laravel', 'React', 'Bootstrap', 'MySQL'];
-
-            $newProject->title = $title;
-            $newProject->technologies = $faker->randomElements($techPool, rand(1, 3));
+            $newProject->title = $faker->sentence(2);
             $newProject->cover_image = "placeholder-img.png";
             $newProject->description = $faker->paragraph();
-            $newProject->url_repo = $faker->url();
+            $newProject->url_repo = 'https://github.com';
 
             $newProject->save();
         }

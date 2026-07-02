@@ -22,11 +22,6 @@
                         <ul class="card-body px-3 pt-3 pb-2 list-unstyled">
                             <li><b class="fs-4 bg-info px-2 py-1 rounded-3">{{$project['title']}}</b></li>
                             <li class="my-2">{{$project['description']}}</li>
-                            <li class="d-flex gap-2 justify-content-center">
-                                @foreach ($project['technologies'] as $technology)
-                                    <span class="px-2 py-1 bg-warning rounded-3">{{$technology}}</span>
-                                @endforeach
-                            </li>
                             @auth
                             @if(auth()->user()->isAdmin())
                             <li class="mt-3">
